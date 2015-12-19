@@ -1,0 +1,34 @@
+{
+  "name": "ci-system",
+  "version": "1.0.0",
+  "description": "CI system :: https://ci-system.herokuapp.com/",
+  "main": "server.js",
+  "scripts": {
+    "start": "node --harmony ./server.js",
+    "postinstall": "bower install && gulp build"
+  },
+  "author": "Jeferson Amorim amorimjj@gmail.com",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/amorimjj/ci-system"
+  },
+  "dependencies": {
+    "express": "~4.13.3",
+    "body-parser": "~1.14.2"
+  },
+  "engines": {
+    "node": "5.2.x"
+  },
+  "devDependencies": {
+    "babel-core": "~6.3.21",
+    "bower": "~1.7.1",
+    "gulp": "~3.9.0",
+    "gulp-compass": "^2.1.0",
+    "gulp-jasmine": "~2.2.1",
+    "gulp-jshint": "~2.0.0",
+    "gulp-livereload": "~3.8.1",
+    "jasmine-terminal-reporter": "~1.0.0",
+    "jshint": "^2.8.0"
+  }
+}

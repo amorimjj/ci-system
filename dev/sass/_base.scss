@@ -1,0 +1,17 @@
+// Import compass transform
+@import "compass/css3/transform";
+
+$font-size          : 1.1em;
+$symbol-font-size   : $font-size * 2.72;
+$white              : white;
+$gray               : rgb(119,119,119);
+$smooth-gray        : lighten($gray, 43%);
+$pending-color      : rgb(245,147,42);
+$running-color      : rgb(51,142,201);
+$passed-color       : rgb(52,185,157);
+$failed-color       : rgb(238,101,115);
+$background-color   : rgb(243,243,244);
+
+@mixin hflip {
+    @include transform( scale(-1, 1) );
+}

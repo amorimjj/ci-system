@@ -1,0 +1,23 @@
+{
+  "name": "ci-system",
+  "version": "1.0.0",
+  "description": "CI system :: https://ci-system.herokuapp.com/",
+  "main": "server.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "dev/bower_components/",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.8",
+    "angular-route": "~1.4.8"
+  },
+  "homepage": "https://github.com/amorimjj/ci-system",
+  "authors": [
+    "Jeferson Amorim <amorimjj@gmail.com>"
+  ],
+  "moduleType": []
+}

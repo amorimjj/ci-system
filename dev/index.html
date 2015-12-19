@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html ng-app="ci-system" lang="en">
+<head>
+  <base href="/">
+  <meta charset="utf-8">
+  <title>Continuous Integration System</title>
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <!-- build:css stylesheets/ci-system.dist.css -->
+  <link href="css/application.css" rel="stylesheet" type="text/css" />
+  <!-- /build -->
+
+  <!-- build:js scripts/ci-system.min.js -->
+  <script src="bower_components/angular/angular.min.js"></script>
+  <script src="bower_components/angular-route/angular-route.min.js"></script>
+  <script type="text/javascript" src="app/app.js"></script>
+  <script type="text/javascript" src="app/services/builds.js"></script>
+  <script type="text/javascript" src="app/controllers/list.js"></script>
+
+  <!-- /build -->
+</head>
+  <body>
+    <div class="container-fluid" ng-view></div>
+  </body>
+</html>
