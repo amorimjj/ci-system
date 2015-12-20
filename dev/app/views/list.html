@@ -10,28 +10,56 @@
       </th>
       <th>Status</th>
   </tr>
-  <tr ng-class="build.status" ng-repeat="build in builds | orderBy:'-startedAt'">
+  <tr ng-class="getClassByBuild(build)" ng-repeat-start="build in builds | orderBy:'-startedAt'" ng-click="showDetails(build)">
       <td>{{build.changelist}}</td>
       <td>{{build.owner}}</td>
       <td class="text-lowercase show-time">
           {{build.startedAt | date : 'd / M / yyyy'}} <span class="glyphicon glyphicon-time hflip" aria-hidden="true"></span>{{build.startedAt | date : 'shortTime'}}
       </td>
-      <td colspan="3" class="steps" ng-class="build.step">
-          <div>
+      <td colspan="3" class="steps">
+          <div class="step" ng-class="{ disabled: (build.step === 0) }">
               <span class="glyphicon" ng-class="getGlyphiconStepByStatus(build.status)" aria-hidden="true"></span>
           </div>
-          <div>
+          <div class="step" ng-class="{ disabled: (build.step < 2 ) }">
               <span class="glyphicon" ng-class="getGlyphiconStepByStatus(build.status)" aria-hidden="true"></span>
           </div>
-          <div>
+          <div class="step" ng-class="{ disabled: (build.step < 3) }">
               <span class="glyphicon" ng-class="getGlyphiconStepByStatus(build.status)" aria-hidden="true"></span>
           </div>
+          <div ci-progress-bar perc="build.progress" max='50' status="build.status" step="build.step"></div>
+          <div ci-progress-bar perc="build.progress" max='100' status="build.status" step="build.step"></div>
       </td>
-      <td class="text-capitalize">
+      <td rowspan="2" class="text-capitalize">
           <div>
               <span class="glyphicon" ng-class="getGlyphiconStatusByStatus(build.status)" aria-hidden="true"></span>
           </div>
           {{build.status}}
+      </td>
+  </tr>
+  <tr ng-repeat-end class="details" ng-class="{ selected: build.selected }">
+      <td colspan="6">
+          <div>
+              Build <span class="glyphicon" ng-class="getGlyphiconStepByStatus(build.status)" aria-hidden="true"></span>
+              <span class="glyphicon glyphicon-time hflip" aria-hidden="true"></span>{{build.endedAt | date : 'shortTime'}}
+          </div>
+          <div>
+              <a ng-href="build.download.debug">debug</a>
+              <a ng-href="build.download.release">release</a>
+          </div>
+          <div>
+              Unit Test <span class="glyphicon" ng-class="getGlyphiconStepByStatus(build.status)" aria-hidden="true"></span>
+              {{(1 - (build.unitTest.skip/build.unitTest.tests)) * 100 }}%
+              {{build.unitTest.tests}}
+              {{build.unitTest.unit}}
+              <span class="glyphicon glyphicon-time hflip" aria-hidden="true"></span>{{build.unitTest.elapsedTime}}
+          </div>
+          <div>
+              Funcional Test <span class="glyphicon" ng-class="getGlyphiconStepByStatus(build.status)" aria-hidden="true"></span>
+              {{(1 - (build.funcionalTest.skip/build.funcionalTest.tests)) * 100 }}%
+              {{build.funcionalTest.tests}}
+              {{build.funcionalTest.unit}}
+              <span class="glyphicon glyphicon-time hflip" aria-hidden="true"></span>{{build.funcionalTest.elapsedTime}}
+          </div>
       </td>
   </tr>
 </table>

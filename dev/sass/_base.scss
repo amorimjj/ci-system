@@ -11,6 +11,7 @@ $running-color      : rgb(51,142,201);
 $passed-color       : rgb(52,185,157);
 $failed-color       : rgb(238,101,115);
 $background-color   : rgb(243,243,244);
+$larger-border      : 4px;
 
 @mixin hflip {
     @include transform( scale(-1, 1) );

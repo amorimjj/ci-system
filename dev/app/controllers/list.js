@@ -4,6 +4,7 @@
 
   var ListCtrl = function($scope, Builds) {
 
+      $scope.selectedBuild = {};
       $scope.builds = Builds.find();
 
       $scope.getGlyphiconStatusByStatus = function(status) {
@@ -23,6 +24,30 @@
               'failed'  : 'glyphicon-failed'
           }[status];
       };
+
+      $scope.getClassByBuild = function(build) {
+
+          var classes = [build.status];
+
+          if ( build.selected )
+            classes.push('selected');
+
+          return classes.join(' ');
+
+      };
+
+      $scope.showDetails = function(build) {
+
+          build.selected = !build.selected;
+
+          Builds.get(build);
+
+          if ( build ===  $scope.selectedBuild )
+            return;
+
+          $scope.selectedBuild.selected = false;
+          $scope.selectedBuild = build;
+      }
   };
 
   angular.module('ci-system')
