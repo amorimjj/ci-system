@@ -5,7 +5,7 @@
   'use strict';
 
   angular
-        .module('ci-system', ['ngRoute']);
+        .module('ci-system', ['ngRoute','ngResource', 'btford.socket-io', 'ngAnimate']);
 
 
   var appConfig = function ($routeProvider, $locationProvider) {

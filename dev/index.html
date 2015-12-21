@@ -7,13 +7,21 @@
   <meta content="width=device-width, initial-scale=1" name="viewport">
   <!-- build:css stylesheets/ci-system.dist.css -->
   <link href="css/application.css" rel="stylesheet" type="text/css" />
+  <link href="css/steps.css" rel="stylesheet">
+  <link href="css/build-details.css" rel="stylesheet">
+  <link href="css/icons.css" rel="stylesheet">
   <!-- /build -->
 
   <!-- build:js scripts/ci-system.min.js -->
+  <script src="bower_components/socket.io-client/socket.io.js"></script>
   <script src="bower_components/angular/angular.min.js"></script>
   <script src="bower_components/angular-route/angular-route.min.js"></script>
+  <script src="bower_components/angular-resource/angular-resource.min.js"></script>
+  <script src="bower_components/angular-socket-io/socket.min.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.min.js"></script>
   <script type="text/javascript" src="app/app.js"></script>
   <script type="text/javascript" src="app/services/builds.js"></script>
+  <script type="text/javascript" src="app/services/socket-builds.js"></script>
   <script type="text/javascript" src="app/directives/progress-bar.js"></script>
   <script type="text/javascript" src="app/controllers/list.js"></script>
 

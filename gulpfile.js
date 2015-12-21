@@ -1,18 +1,18 @@
 
 'use strict';
 
-require('babel-core/register');
+//require('babel-core/register');
 
 /*===============================
 =            Loaders            =
 ===============================*/
-var gulp          = require('gulp');
-var jshint        = require('gulp-jshint');
-var compass       = require('gulp-compass');
-var livereload    = require('gulp-livereload');
-var spawn         = require('child_process').spawn;
-var Jasmine       = require('gulp-jasmine');
-var Reporter      = require('jasmine-terminal-reporter');
+var gulp            = require('gulp');
+var jshint          = require('gulp-jshint');
+var compass         = require('gulp-compass');
+var livereload      = require('gulp-livereload');
+var spawn           = require('child_process').spawn;
+var jasmineBrowser  = require('gulp-jasmine-browser');
+//var Reporter      = require('jasmine-terminal-reporter');
 var node;
 
 /*=====  End of Loaders  ======*/
@@ -21,16 +21,27 @@ var node;
 /*==================================
 =            References            =
 ==================================*/
-var files = ['./server.js', './dev/app/**/*.js', '!./dev/app/js/**/*.js'];
+var files = ['./server.js', './dev/api/**/*.js', './dev/app/**/*.js', '!./dev/app/js/**/*.js'];
 var sassFiles = ['./dev/sass/**/*.scss'];
 var css = './dev/css';
-var specs = ['./tests/**/*-specs.js'];
+var specs = [
+    './dev/bower_components/socket.io-client/socket.io.js',
+    './dev/bower_components/angular/angular.min.js',
+    './dev/bower_components/angular-route/angular-route.min.js',
+    './dev/bower_components/angular-resource/angular-resource.min.js',
+    './dev/bower_components/angular-socket-io/socket.min.js',
+    './dev/bower_components/angular-animate/angular-animate.min.js',
+    './dev/bower_components/angular-mocks/angular-mocks.js',
+    './dev/app/app.js',
+    './dev/app/controllers/*.js',
+    './tests/**/*-specs.js'
+];
 
-var reporter = new Reporter({
+/*var reporter = new Reporter({
     isVerbose: true,
     showColors: true,
     includeStackTrace: true
-});
+});*/
 
 /*=====  End of References  ======*/
 
@@ -46,7 +57,8 @@ gulp.task('hint', function () {
 
 gulp.task('specs', function () {
     return gulp.src(specs)
-        .pipe(new Jasmine({ reporter: reporter }));
+        .pipe(jasmineBrowser.specRunner({console: true}))
+        .pipe(jasmineBrowser.headless());
 });
 
 gulp.task('server', function () {

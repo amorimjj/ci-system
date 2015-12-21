@@ -1,0 +1,76 @@
+@-moz-keyframes spin {
+  100% {
+    -moz-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  100% {
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+.show-time {
+  text-transform: lowercase;
+  font-size: 1.1em;
+  line-height: 1.1em;
+}
+.show-time span {
+  font-size: 0.803em;
+  padding-left: 0.165em;
+}
+
+.status, .circle {
+  display: inline-block;
+}
+
+.circle {
+  border-radius: 50%;
+  text-align: center;
+}
+
+.glyphicon-refresh {
+  -moz-animation: spin 2.4s linear infinite;
+  -webkit-animation: spin 2.4s linear infinite;
+  animation: spin 2.4s linear infinite;
+}
+
+.icon-stopwatch {
+  width: 15px;
+  height: 15px;
+  background-size: 15px;
+  background-image: url("../images/icon-stopwatch.png");
+  display: inline-block;
+  position: relative;
+  top: 1px;
+  left: -2px;
+}
+
+.icon-folder, .icon-folder-passed, .icon-folder-failed {
+  background-position: center top;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+
+.icon-folder-passed {
+  background-image: url("../images/icon-folder-passed.png");
+}
+
+.icon-folder-failed {
+  background-image: url("../images/icon-folder-failed.png");
+}
+
+.icon-get-logs {
+  background-image: url("../images/icon-get-logs.png");
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  padding-left: 15px;
+}

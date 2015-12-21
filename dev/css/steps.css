@@ -1,0 +1,172 @@
+@-moz-keyframes spin {
+  100% {
+    -moz-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  100% {
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+.show-time {
+  text-transform: lowercase;
+  font-size: 1.1em;
+  line-height: 1.1em;
+}
+.show-time span {
+  font-size: 0.803em;
+  padding-left: 0.165em;
+}
+
+.status, .circle, .pending td.steps div.step span:after, td.steps div.step {
+  display: inline-block;
+}
+
+.circle, .pending td.steps div.step span:after, td.steps div.step {
+  border-radius: 50%;
+  text-align: center;
+}
+
+th.steps div {
+  display: -webkit-inline-flex;
+  display: inline-flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  display: inline-block;
+  /* non-flexbox browsers */
+  width: 32%;
+  text-align: center;
+}
+th.steps > div {
+  width: 400px;
+  height: 50px;
+  position: relative;
+  margin: auto;
+  display: block;
+}
+
+.pending td.steps div.step {
+  background-color: #f5932a;
+}
+.pending td.steps div.step span {
+  left: 27%;
+  margin-top: 50%;
+}
+.pending td.steps div.step span:after {
+  content: '';
+  position: relative;
+  width: 1.54em;
+  height: 1.54em;
+  font-size: 0.88em;
+  border: 2px solid white;
+  left: -50%;
+}
+
+.passed td.steps div.step {
+  background-color: #34b99d;
+}
+
+.running td.steps div.step {
+  background-color: #338ec9;
+}
+
+.failed td.steps div.step {
+  background-color: #ee6573;
+}
+.failed td.steps span.glyphicon-failed:after {
+  content: '!';
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+td.steps {
+  position: relative;
+}
+td.steps > div {
+  width: 400px;
+  height: 50px;
+  position: relative;
+  margin: auto;
+}
+td.steps > div:after {
+  content: ' ';
+  background: #e5e5e5;
+  width: 60%;
+  left: 20%;
+  height: 8px;
+  top: 21px;
+  position: absolute;
+  display: block;
+}
+td.steps div.step {
+  display: -webkit-inline-flex;
+  display: inline-flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  display: inline-block;
+  /* non-flexbox browsers */
+  width: 35px;
+  height: 35px;
+  font-size: 0.99733333em;
+  background: #e5e5e5;
+  border: 4px solid #e5e5e5;
+  margin-top: 7.5px;
+  margin-left: 47.86666667px;
+  margin-right: 47.86666667px;
+  color: white;
+  position: relative;
+  z-index: 1;
+}
+td.steps div.step span {
+  top: -7.125px;
+  text-shadow: 0px 0px 1px #aaaaaa;
+  font-size: 12.25px;
+}
+td.steps div.step.disabled {
+  background: #e5e5e5;
+}
+td.steps div.step.disabled span {
+  color: #e5e5e5;
+  text-shadow: none;
+}
+td.steps div.step.disabled span:after {
+  border: 0;
+}
+td.steps div.progress {
+  height: 4.8px;
+  position: absolute;
+  top: 22.6px;
+  width: 107.73333333px;
+  left: 78.86666667px;
+  z-index: 1;
+  background-color: transparent;
+  border-radius: 4px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+td.steps div.progress:last-child {
+  left: 211.9px;
+}
+td.steps div.progress .progress-bar {
+  background-color: #338ec9;
+}
+td.steps div.progress .progress-bar-success {
+  background-color: #34b99d;
+}
+td.steps div.progress .progress-bar-danger {
+  background-color: #ee6573;
+}

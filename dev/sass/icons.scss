@@ -1,0 +1,45 @@
+// Import Base
+@import "base";
+
+@mixin icon-size($icon-size) {
+    width: $icon-size;
+    height: $icon-size;
+    background-size: $icon-size;
+}
+
+.glyphicon-refresh {
+    @include animation(spin $animation-time * 8 linear infinite);
+}
+
+.icon-stopwatch {
+    @include icon-size(15px);
+    background-image: url("../images/icon-stopwatch.png");
+    display: inline-block;
+    position: relative;
+    top: 1px;
+    left: -2px;
+}
+
+.icon-folder {
+    background-position: center top;
+    background-repeat: no-repeat;
+    display: inline-block;
+}
+
+.icon-folder-passed {
+    @extend .icon-folder;
+    background-image: url("../images/icon-folder-passed.png");
+
+}
+
+.icon-folder-failed {
+    @extend .icon-folder;
+    background-image: url("../images/icon-folder-failed.png");
+}
+
+.icon-get-logs {
+  background-image: url("../images/icon-get-logs.png");
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  padding-left: 15px;
+}

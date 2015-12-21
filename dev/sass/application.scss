@@ -7,13 +7,6 @@
 // Import Bootstrap for Sass
 @import "bootstrap";
 
-
-@import "compass/css3";
-
-// Import flexbox
-@import "compass/css3/flexbox";
-
-
 // Import Base
 @import "base";
 
@@ -39,19 +32,29 @@ td {
     line-height: $font-size * 4 !important;
 }
 
-tr.details td {
-    line-height: $font-size * 6 !important;
-}
-
 th:first-child{
     border-left:5px solid $smooth-gray;
     padding-left: 5em !important;
+}
+
+th:last-child{
+    min-width: 100px;
 }
 
 .strong-labels {
     font-weight: 500;
     font-size: $font-size * 1;
     line-height: $font-size * 3.63 !important;
+}
+
+tr.selected {
+    td.build-status {
+        background-color: $background-color;
+        font-size: $font-size * 2;
+        line-height: 1em !important;
+        vertical-align: middle;
+        text-align: center;
+    }
 }
 
 td:last-child {
@@ -64,23 +67,8 @@ td:first-child {
     font-weight: 400;
 }
 
-td.show-time span {
-    font-size: $font-size * 0.73;
-    padding-left: $font-size * 0.15;
-}
-
 .hflip {
   @include hflip;
-}
-
-.status {
-    display: inline-block;
-}
-
-.circle {
-    @extend .status;
-    border-radius:50%;
-    text-align:center;
 }
 
 .circle-symbols {
@@ -107,24 +95,6 @@ td.show-time span {
                 border: 2px solid darken($pending-color, 5%);
             }
         }
-        &.steps {
-            div.step {
-                background-color: $pending-color;
-                span {
-                    left: 30%;
-                    &:after {
-                        content: '';
-                        @extend .circle;
-                        position: relative;
-                        width:$font-size*1.4;
-                        height:$font-size*1.4;
-                        font-size:$font-size*0.8;
-                        border:2px solid $white;
-                        left: -50%;
-                    }
-                }
-            }
-        }
     }
 }
 
@@ -139,11 +109,6 @@ td.show-time span {
                     font-weight: bold;
                     color: darken($running-color, 5%);
                 }
-            }
-        }
-        &.steps {
-            div.step {
-                background-color: $running-color;
             }
         }
     }
@@ -162,11 +127,6 @@ td.show-time span {
                 }
             }
         }
-        &.steps {
-            div.step {
-                background-color: $passed-color;
-            }
-        }
     }
 }
 
@@ -183,124 +143,49 @@ td.show-time span {
                 }
             }
         }
-        &.steps {
-            div.step {
-                background-color: $failed-color;
-            }
-            span.glyphicon-failed:after {
-                content: '!';
-                font-size: 1.5em;
-                font-weight: bold;
-            }
-        }
     }
 }
 
+ .build-status {
 
-.inline {
-    display: inline-block; /* non-flexbox browsers */
-    @include display-flex(inline-flex);
-    @include align-items(center);
-    @include justify-content(center);
-}
+     @include transition(all $animation-time * 2 linear);
 
-th.steps {
+     & .ng-enter,
+     & .ng-enter.ng-enter-active {
+         opacity: 0;
+     }
 
-    div {
-        @extend .inline;
-        width:30%;
-    }
+     & .ng-leave.ng-leave-active {
+         opacity: 1;
+     }
+ }
 
-}
-
-td.steps {
-    position: relative;
-
-    &:after {
-        content: ' ';
-        background: $smooth-gray;
-        top: 39%;
-        width: 65%;
-        left:15%;
-        height: $font-size*0.7;
-        position: absolute;
-        display: block;
-    }
-    div.step {
-        @extend .circle;
-        @extend .inline;
-        width:$symbol-font-size;
-        height:$symbol-font-size;
-        font-size:$symbol-font-size/3;
-        background: $smooth-gray;
-        border:$larger-border solid $smooth-gray;
-        margin:0 10%;
-        color:$white;
-        position:relative;
-        z-index:1;
-        span {
-            top:0;
-            @include single-text-shadow;
-        }
-        &.disabled {
-            background: $smooth-gray;
-        }
-        &.disabled span {
-            color: $smooth-gray;
-            text-shadow: none;
-        }
-        &.disabled span:after {
-            border: 0;
-        }
-    }
-    div.progress {
-        height:$font-size*0.3;
-        position: absolute;
-        top: 44%;
-        width: 23%;
-        left: 20%;
-        z-index: 1;
-        background-color: transparent;
-        border-radius: 4px;
-        -webkit-box-shadow: none;
-        box-shadow: none;
-
-        &:last-child {
-            left: 50%;
-        }
-        .progress-bar {
-            background-color: $running-color;
-        }
-
-        .progress-bar-success {
-            background-color: $passed-color;
-        }
-
-        .progress-bar-danger {
-            background-color: $failed-color;
-        }
+tr.list {
+    &.passed, &.failed {
+        cursor: pointer;
     }
 }
 
-tr.details td {
-    display: none;
-}
+ .list {
+     line-height:40px;
+     list-style:none;
+     box-sizing:border-box;
+ }
 
-tr.selected td {
-    border-left-color:$smooth-gray;
-    &:last-child{
-        border:0 !important;
-        outline:1px solid $smooth-gray;
-    }
-}
+ .list.ng-move,
+ .list.ng-enter,
+ .list.ng-leave {
+     @include transition(all linear $animation-time*2);
+ }
 
-tr.selected.passed td {
-    border-top:3px solid $passed-color;
-}
+ .list.ng-leave.ng-leave-active,
+ .list.ng-move,
+ .list.ng-enter {
+     opacity:0;
+ }
 
-tr.details.selected td {
-    display: table-cell;
-    outline: none !important;
-    border-top:1px solid $smooth-gray !important;
-    border-left:$larger-border+1 solid $smooth-gray !important;
-}
+ .list.ng-leave,
+ .list.ng-move.ng-move-active,
+ .list.ng-enter.ng-enter-active {
+     opacity:1;
+ }

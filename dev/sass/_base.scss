@@ -1,5 +1,21 @@
+// Import compass
+@import "compass/css3";
+
 // Import compass transform
 @import "compass/css3/transform";
+
+// Import flexbox
+@import "compass/css3/flexbox";
+
+// Import transition
+@import "compass/css3/transition";
+
+// Import transform
+@import "compass/css3/transform";
+
+// Import transform
+@import "compass/css3/animation";
+
 
 $font-size          : 1.1em;
 $symbol-font-size   : $font-size * 2.72;
@@ -12,7 +28,40 @@ $passed-color       : rgb(52,185,157);
 $failed-color       : rgb(238,101,115);
 $background-color   : rgb(243,243,244);
 $larger-border      : 4px;
+$animation-time     : 0.3s;
 
 @mixin hflip {
     @include transform( scale(-1, 1) );
+}
+
+@mixin inline-box {
+    @include display-flex(inline-flex);
+    @include align-items(center);
+    @include justify-content(center);
+    display: inline-block; /* non-flexbox browsers */
+}
+
+@include keyframes('spin') {
+    100% { @include transform(rotate(360deg)); }
+}
+
+.show-time {
+    text-transform: lowercase;
+    font-size: $font-size;
+    line-height: $font-size;
+
+    span {
+        font-size: $font-size * 0.73;
+        padding-left: $font-size * 0.15;
+    }
+}
+
+.status {
+    display: inline-block;
+}
+
+.circle {
+    @extend .status;
+    border-radius:50%;
+    text-align:center;
 }

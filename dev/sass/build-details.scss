@@ -1,0 +1,247 @@
+// Import Base
+@import "base";
+
+tr.selected.passed td, tr.failed.passed td{
+    @include transition(border-top-color $animation-time linear);
+}
+
+tr.selected td {
+
+    border-left-color:$smooth-gray;
+
+    &:last-child{
+        border:0 !important;
+        outline:1px solid $smooth-gray;
+    }
+}
+
+tr.selected.passed td {
+    border-top:3px solid $passed-color;
+    border-bottom: 1px solid $smooth-gray;
+}
+
+tr.selected.failed td {
+    border-top:3px solid $failed-color;
+    border-bottom: 1px solid $smooth-gray;
+}
+
+tr.details {
+
+    &:hover {
+        background-color: transparent !important;
+    }
+
+    $heigth: 111px;
+    border-top:1px solid $smooth-gray !important;
+    border-left:$larger-border+1 solid $smooth-gray !important;
+    @include transition(all $animation-time linear);
+
+    height:$heigth;
+
+
+    &.ng-enter,
+    &.ng-enter.ng-enter-active {
+        height:0;
+        opacity: 0;
+    }
+
+    &.ng-leave.ng-leave-active {
+        height:$heigth;
+        opacity: 1;
+    }
+}
+
+
+tr.details td {
+
+    position: absolute;
+    border-top:1px solid $smooth-gray !important;
+
+    outline: none !important;
+
+    h5 {
+        font-weight: 400;
+    }
+
+    &.failed .test-result div{
+        display: block;
+        position: relative;
+
+        & span {
+            color: $gray;
+            font-weight: 400;
+        }
+
+        & span.bad {
+            color: $failed-color;
+            font-size: 1.5em;
+            position: relative;
+            top: 3px;
+            font-weight: 400;
+        }
+
+        & span.perc {
+            color: $smooth-gray;
+        }
+    }
+
+    &.failed .status h5 {
+        color: $failed-color;
+    }
+
+    span.perc {
+        font-size: $font-size * 2;
+
+    }
+
+    &.passed span.perc {
+        color: $passed-color;
+    }
+
+    div {
+        display: inline-block;
+
+        .div-table {
+            flex-direction: column;
+            vertical-align: top;
+        }
+
+        &.status {
+            @extend .div-table;
+            position: relative;
+            top: -2em;
+
+            p.show-time {
+                font-size: $font-size * 0.8;
+            }
+        }
+
+        &.download {
+            margin-left:$font-size;
+            position: relative;
+            a {
+                margin: $font-size;
+                text-decoration: underline;
+                padding-top: $font-size*1.9;
+                margin-bottom: 0;
+                font-family: arial;
+                position: relative;
+                top: -0.4em;
+            }
+
+            a.disabled {
+                color: $smooth-gray;
+                cursor: not-allowed;
+            }
+
+            a.get-log {
+                position: absolute;
+                border: 0;
+                line-height: 15px;
+                font-size: 10px;
+                top: 36px;
+                left: 57px;
+            }
+        }
+
+        &.arrows {
+            margin: 0 $font-size*7.2;
+            position: relative;
+
+            &:before, &:after {
+                content: '>';
+                display: block;
+                position: absolute;
+                font-size: $font-size*1.9;
+                opacity: 0.5;
+                font-family: monospace;
+                top: 22%;
+            }
+
+            &:before {
+                left: -2.3em;
+            }
+
+            &:after {
+                left: 100%;
+                margin-left: 1.5em;
+            }
+        }
+
+        &.test-result {
+            div {
+                @extend .div-table;
+            }
+
+            div.circle {
+                width: 70px;
+                height: 70px;
+                background-color: $passed-color;
+                margin: 0 $font-size*2;
+                margin-top: 1em;
+                top:0;
+            }
+
+            ul {
+                display:inline-block;
+                list-style-type: none;
+                padding:0;
+                margin-top: 1em;
+
+                li {
+                    $spacing: 5px;
+                    $font-size: $font-size * 0.9;
+                    font-size: $font-size;
+                    line-height: $font-size;
+                    position: relative;
+                    padding: $spacing;
+                    font-weight: 200;
+
+                    &.runned, &.skiped {
+                        margin-left: $font-size*0.8;
+                        font-weight: 300;
+                    }
+
+                    &.runned:before, &.skiped:before {
+                        $bullet-size: 7px;
+                        content: '';
+                        width: $bullet-size;
+                        height: $bullet-size;
+                        display: block;
+                        position: absolute;
+                        top: $bullet-size;
+                        left: $spacing*-1;
+                    }
+
+                    &.runned:before {
+                        background: $passed-color;
+                    }
+
+                    &.skiped:before {
+                        background: $pending-color;
+                    }
+                }
+            }
+        }
+
+        span.glyphicon {
+            border-radius: 2px;
+            padding: 2px;
+            position: relative;
+
+            &.glyphicon-ok {
+                font-size: 0.7em;
+                color: $white;
+                background: $passed-color;
+            }
+
+            &.glyphicon-minus-sign {
+                $font-size: 1em;
+                font-size: 1em;
+                color: $failed-color;
+                top: 1px;
+            }
+        }
+
+    }
+}

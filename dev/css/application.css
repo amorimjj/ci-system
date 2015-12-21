@@ -7352,6 +7352,45 @@ button.close {
     display: none !important;
   }
 }
+@-moz-keyframes spin {
+  100% {
+    -moz-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  100% {
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+.show-time {
+  text-transform: lowercase;
+  font-size: 1.1em;
+  line-height: 1.1em;
+}
+.show-time span {
+  font-size: 0.803em;
+  padding-left: 0.165em;
+}
+
+.status, .circle, .circle-symbols, .pending td:last-child div, .running td:last-child div, .passed td:last-child div, .failed td:last-child div {
+  display: inline-block;
+}
+
+.circle, .circle-symbols, .pending td:last-child div {
+  border-radius: 50%;
+  text-align: center;
+}
+
 body {
   font-size: 1.1em;
   color: #777777;
@@ -7374,13 +7413,13 @@ td {
   line-height: 4.4em !important;
 }
 
-tr.details td {
-  line-height: 6.6em !important;
-}
-
 th:first-child, td:first-child {
   border-left: 5px solid #e5e5e5;
   padding-left: 5em !important;
+}
+
+th:last-child {
+  min-width: 100px;
 }
 
 .strong-labels, td:last-child, td:first-child {
@@ -7389,13 +7428,16 @@ th:first-child, td:first-child {
   line-height: 3.993em !important;
 }
 
-td:first-child {
-  font-weight: 400;
+tr.selected td.build-status {
+  background-color: #f3f3f4;
+  font-size: 2.2em;
+  line-height: 1em !important;
+  vertical-align: middle;
+  text-align: center;
 }
 
-td.show-time span {
-  font-size: 0.803em;
-  padding-left: 0.165em;
+td:first-child {
+  font-weight: 400;
 }
 
 .hflip {
@@ -7403,15 +7445,6 @@ td.show-time span {
   -ms-transform: scale(-1, 1);
   -webkit-transform: scale(-1, 1);
   transform: scale(-1, 1);
-}
-
-.status, .circle, .circle-symbols, .pending td:last-child div, .pending td.steps div.step span:after, td.steps div.step, .running td:last-child div, .passed td:last-child div, .failed td:last-child div {
-  display: inline-block;
-}
-
-.circle, .circle-symbols, .pending td:last-child div, .pending td.steps div.step span:after, td.steps div.step {
-  border-radius: 50%;
-  text-align: center;
 }
 
 .circle-symbols, .pending td:last-child div {
@@ -7435,21 +7468,6 @@ td.show-time span {
 .pending td:last-child div {
   border: 2px solid #f48712;
 }
-.pending td.steps div.step {
-  background-color: #f5932a;
-}
-.pending td.steps div.step span {
-  left: 30%;
-}
-.pending td.steps div.step span:after {
-  content: '';
-  position: relative;
-  width: 1.54em;
-  height: 1.54em;
-  font-size: 0.88em;
-  border: 2px solid white;
-  left: -50%;
-}
 
 .running td {
   border-left-color: #338ec9;
@@ -7460,9 +7478,6 @@ td.show-time span {
 .running td:last-child div span {
   font-weight: bold;
   color: #2e80b5;
-}
-.running td.steps div.step {
-  background-color: #338ec9;
 }
 
 .passed td {
@@ -7475,9 +7490,6 @@ td.show-time span {
   font-weight: bold;
   color: #2ea58c;
 }
-.passed td.steps div.step {
-  background-color: #34b99d;
-}
 
 .failed td {
   border-left-color: #ee6573;
@@ -7489,112 +7501,47 @@ td.show-time span {
   font-weight: bold;
   color: #eb4e5e;
 }
-.failed td.steps div.step {
-  background-color: #ee6573;
+
+.build-status {
+  -moz-transition: all 0.6s linear;
+  -o-transition: all 0.6s linear;
+  -webkit-transition: all 0.6s linear;
+  transition: all 0.6s linear;
 }
-.failed td.steps span.glyphicon-failed:after {
-  content: '!';
-  font-size: 1.5em;
-  font-weight: bold;
+.build-status .ng-enter, .build-status .ng-enter.ng-enter-active {
+  opacity: 0;
+}
+.build-status .ng-leave.ng-leave-active {
+  opacity: 1;
 }
 
-.inline, th.steps div, td.steps div.step {
-  display: inline-block;
-  /* non-flexbox browsers */
-  display: -webkit-inline-flex;
-  display: inline-flex;
-  -webkit-align-items: center;
-  align-items: center;
-  -webkit-justify-content: center;
-  justify-content: center;
+tr.list.passed, tr.list.failed {
+  cursor: pointer;
 }
 
-th.steps div {
-  width: 30%;
+.list {
+  line-height: 40px;
+  list-style: none;
+  box-sizing: border-box;
 }
 
-td.steps {
-  position: relative;
-}
-td.steps:after {
-  content: ' ';
-  background: #e5e5e5;
-  top: 39%;
-  width: 65%;
-  left: 15%;
-  height: 0.77em;
-  position: absolute;
-  display: block;
-}
-td.steps div.step {
-  width: 2.992em;
-  height: 2.992em;
-  font-size: 0.99733333em;
-  background: #e5e5e5;
-  border: 4px solid #e5e5e5;
-  margin: 0 10%;
-  color: white;
-  position: relative;
-  z-index: 1;
-}
-td.steps div.step span {
-  top: 0;
-  text-shadow: 0px 0px 1px #aaaaaa;
-}
-td.steps div.step.disabled {
-  background: #e5e5e5;
-}
-td.steps div.step.disabled span {
-  color: #e5e5e5;
-  text-shadow: none;
-}
-td.steps div.step.disabled span:after {
-  border: 0;
-}
-td.steps div.progress {
-  height: 0.33em;
-  position: absolute;
-  top: 44%;
-  width: 23%;
-  left: 20%;
-  z-index: 1;
-  background-color: transparent;
-  border-radius: 4px;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-td.steps div.progress:last-child {
-  left: 50%;
-}
-td.steps div.progress .progress-bar {
-  background-color: #338ec9;
-}
-td.steps div.progress .progress-bar-success {
-  background-color: #34b99d;
-}
-td.steps div.progress .progress-bar-danger {
-  background-color: #ee6573;
+.list.ng-move,
+.list.ng-enter,
+.list.ng-leave {
+  -moz-transition: all 0.6s linear;
+  -o-transition: all 0.6s linear;
+  -webkit-transition: all 0.6s linear;
+  transition: all 0.6s linear;
 }
 
-tr.details td {
-  display: none;
+.list.ng-leave.ng-leave-active,
+.list.ng-move,
+.list.ng-enter {
+  opacity: 0;
 }
 
-tr.selected td {
-  border-left-color: #e5e5e5;
-}
-tr.selected td:last-child {
-  border: 0 !important;
-  outline: 1px solid #e5e5e5;
-}
-
-tr.selected.passed td {
-  border-top: 3px solid #34b99d;
-}
-
-tr.details.selected td {
-  display: table-cell;
-  outline: none !important;
-  border-top: 1px solid #e5e5e5 !important;
-  border-left: 5px solid #e5e5e5 !important;
+.list.ng-leave,
+.list.ng-move.ng-move-active,
+.list.ng-enter.ng-enter-active {
+  opacity: 1;
 }

@@ -23,7 +23,7 @@
                         return 0;
 
                     return '100%';
-                }
+                };
 
                 scope.getClass = function() {
 
@@ -48,7 +48,7 @@
 
                     return (scope.perc/scope.max) * 100 + '%';
 
-                }
+                };
 
             },
             template: '<div ng-class="getClass()" \
