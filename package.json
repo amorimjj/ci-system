@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node --harmony ./server.js",
-    "postinstall": "bower install && gulp build"
+    "postinstall": "bower install",
+    "test": "gulp specs"
   },
   "author": "Jeferson Amorim amorimjj@gmail.com",
   "license": "MIT",
@@ -35,7 +36,6 @@
     "gulp-livereload": "~3.8.1",
     "jasmine": "^2.4.1",
     "jasmine-core": "^2.4.1",
-    "jasmine-terminal-reporter": "~1.0.0",
     "jshint": "^2.8.0"
   }
 }

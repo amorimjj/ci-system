@@ -9,7 +9,9 @@ const
   bodyParser = require('body-parser'),
   buildRoute = require('./api/routers/build');
 
-let appRoot = environment === 'production' ? 'dist' : 'dev';
+//TODO: create dist with minifyied js and css
+//let appRoot = environment === 'production' ? 'dist' : 'dev';
+let appRoot = environment === 'dev';
 
 app.use(bodyParser.json());
 app.use(express.static(appRoot));

@@ -1,7 +1,7 @@
 
 'use strict';
 
-//require('babel-core/register');
+require('babel-core/register');
 
 /*===============================
 =            Loaders            =
@@ -12,7 +12,6 @@ var compass         = require('gulp-compass');
 var livereload      = require('gulp-livereload');
 var spawn           = require('child_process').spawn;
 var jasmineBrowser  = require('gulp-jasmine-browser');
-//var Reporter      = require('jasmine-terminal-reporter');
 var node;
 
 /*=====  End of Loaders  ======*/
@@ -36,12 +35,6 @@ var specs = [
     './dev/app/controllers/*.js',
     './tests/**/*-specs.js'
 ];
-
-/*var reporter = new Reporter({
-    isVerbose: true,
-    showColors: true,
-    includeStackTrace: true
-});*/
 
 /*=====  End of References  ======*/
 

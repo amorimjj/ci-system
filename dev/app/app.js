@@ -2,28 +2,38 @@
 
 (function () {
 
-  'use strict';
+    'use strict';
 
-  angular
+    angular
         .module('ci-system', ['ngRoute','ngResource', 'btford.socket-io', 'ngAnimate']);
 
+    var httpInterceptorErrorHandler = function($q) {
+        return {
+            responseError: function (response) {
+                //TODO: Show warning
+                return $q.reject(response);
+            }
+        };
+    };
 
-  var appConfig = function ($routeProvider, $locationProvider) {
+    var appConfig = function ($routeProvider, $httpProvider, $locationProvider) {
 
-    $routeProvider
-      .when('/', {
-        templateUrl: 'app/views/list.html',
-        controller: 'ListCtrl'
-      })
-      .otherwise({
-          redirectTo: '/'
-      });
+        $httpProvider.interceptors.push(['$q', httpInterceptorErrorHandler]);
 
-      $locationProvider.html5Mode(true);
-  };
+        $routeProvider
+            .when('/', {
+                templateUrl: 'app/views/list.html',
+                controller: 'ListCtrl'
+            })
+            .otherwise({
+                redirectTo: '/'
+            });
 
-  angular
-    .module('ci-system')
-    .config(['$routeProvider', '$locationProvider', appConfig]);
+        $locationProvider.html5Mode(true);
+    };
+
+    angular
+        .module('ci-system')
+        .config(['$routeProvider', '$httpProvider', '$locationProvider', appConfig]);
 
 })();
