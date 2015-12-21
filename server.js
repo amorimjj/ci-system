@@ -11,7 +11,7 @@ const
 
 //TODO: create dist with minifyied js and css
 //let appRoot = environment === 'production' ? 'dist' : 'dev';
-let appRoot = environment === 'dev';
+let appRoot = 'dev';
 
 app.use(bodyParser.json());
 app.use(express.static(appRoot));
