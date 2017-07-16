@@ -4,9 +4,10 @@
   "description": "CI system :: https://ci-system.herokuapp.com/",
   "main": "server.js",
   "scripts": {
-    "start": "node --harmony ./server.js",
-    "postinstall": "bower install",
-    "test": "gulp specs"
+    "start": "gulp api",
+    "postinstall": "./node_modules/bower/bin/bower install",
+    "test": "gulp specs",
+    "prestart": "npm install"
   },
   "author": "Jeferson Amorim amorimjj@gmail.com",
   "license": "MIT",
