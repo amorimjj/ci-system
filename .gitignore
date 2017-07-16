@@ -11,7 +11,7 @@ node_modules
 .npm
 
 #Bower components
-app/bower_components
+dev/bower_components
 
 #Dist folder
 dist
