@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /*!
- * Bootstrap v3.3.6 (http://getbootstrap.com)
- * Copyright 2011-2015 Twitter, Inc.
+ * Bootstrap v3.3.7 (http://getbootstrap.com)
+ * Copyright 2011-2016 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
@@ -310,8 +310,8 @@ th {
 }
 @font-face {
   font-family: 'Glyphicons Halflings';
-  src: url(fonts/bootstrap/glyphicons-halflings-regular.eot?1450487951);
-  src: url(fonts/bootstrap/glyphicons-halflings-regular.eot?&1450487951#iefix) format("embedded-opentype"), url(fonts/bootstrap/glyphicons-halflings-regular.woff2?1450487951) format("woff2"), url(fonts/bootstrap/glyphicons-halflings-regular.woff?1450487951) format("woff"), url(fonts/bootstrap/glyphicons-halflings-regular.ttf?1450487951) format("truetype"), url(fonts/bootstrap/glyphicons-halflings-regular.svg?1450487951#glyphicons_halflingsregular) format("svg");
+  src: url(fonts/bootstrap/glyphicons-halflings-regular.eot?1500134675);
+  src: url(fonts/bootstrap/glyphicons-halflings-regular.eot?&1500134675#iefix) format("embedded-opentype"), url(fonts/bootstrap/glyphicons-halflings-regular.woff2?1500134675) format("woff2"), url(fonts/bootstrap/glyphicons-halflings-regular.woff?1500134675) format("woff"), url(fonts/bootstrap/glyphicons-halflings-regular.ttf?1500134675) format("truetype"), url(fonts/bootstrap/glyphicons-halflings-regular.svg?1500134675#glyphicons_halflingsregular) format("svg");
 }
 .glyphicon {
   position: relative;
@@ -1418,7 +1418,6 @@ a:hover, a:focus {
   text-decoration: underline;
 }
 a:focus {
-  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -3121,7 +3120,6 @@ select[size] {
 input[type="file"]:focus,
 input[type="radio"]:focus,
 input[type="checkbox"]:focus {
-  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -3674,7 +3672,6 @@ select[multiple].input-lg,
   user-select: none;
 }
 .btn:focus, .btn.focus, .btn:active:focus, .btn:active.focus, .btn.active:focus, .btn.active.focus {
-  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
